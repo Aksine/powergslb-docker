@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  powergslb:
+# Uncomment the build lines if you want to build from Dockerfile instead
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+    image: aksine/powergslb
+    container_name: powergslb
+    hostname: powergslb
+    environment:
+      - MYSQL_ROOT_PASSWORD=<YOUR_ROOT_PASSWORD>
+      - MYSQL_USER_PASSWORD=<YOUR_USER_PASSWORD>
+      - MYSQL_USERNAME=powergslb
+      - MYSQL_DATABASE=powergslb
+      - MYSQL_HOSTNAME=mariadb
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
+    depends_on:
+      - db
+  db:
+    hostname: mariadb
+    image: mariadb:10.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=<YOUR_ROOT_PASSWORD>
+    volumes:
+      - powergslb_db:/var/lib/mysql
+
