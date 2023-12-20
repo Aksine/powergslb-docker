@@ -7,20 +7,39 @@ The following changes were made:
 * Switched to using supervisord to start PowerDNS and PowerGSLB.
 * Exposed environment variables to configure Database settings.
 
-
-To use this and run this:
+### Running PowerGSLB 
 
 Make the changes in the environment variables in docker-compose.yml 
-
-Run the following
+Under powergslb
 ```
-git clone https://github.com/Aksine/powergslb-docker
+    environment:
+      - MYSQL_ROOT_PASSWORD=<YOUR_ROOT_PASSWORD>
+      - MYSQL_USER_PASSWORD=<YOUR_USER_PASSWORD>
+      - MYSQL_USERNAME=powergslb
+      - MYSQL_DATABASE=powergslb
+      - MYSQL_HOSTNAME=mariadb
+```
+
+Run the following the commands
+```
+git clone https://github.com/Asksine/powergslb-docker
 cd powergslb-docker
 docker compose up -d
 ```
 
-If you want to build, uncomment the build lines in docker-compose.yml
+It should be accesible at http://localhost/admin/
 
+### Build from Dockerfile
+
+If you want to build from Dockerfile instead, uncomment the build lines in docker-compose.yml
+```
+# Uncomment the build lines if you want to build from Dockerfile instead
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+```
+
+Then run the following
 ```
 docker compose up -d --build
 ```
