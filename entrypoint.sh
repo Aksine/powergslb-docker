@@ -7,7 +7,7 @@
 wait_for_database() {
     timeout 60s /bin/sh -c "$(cat << EOF
         until echo 'Waiting for database ...' \
-            && nc -z mariadb 3306 < /dev/null > /dev/null 2>&1 ; \
+            && nc -z $MYSQL_HOSTNAME 3306 < /dev/null > /dev/null 2>&1 ; \
         do sleep 1 ; done
 EOF
 )"

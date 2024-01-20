@@ -7,9 +7,9 @@ ENV TZ=Australia/Melbourne
 ENV VERSION=1.7.4
 
 # Install necessary packages
-RUN yum -y install epel-release && \
+RUN yum -y install nc  epel-release mariadb-server && \
    yum -y update && \
-   yum -y install supervisor nc bash-completion bind-utils iproute less mariadb-server net-tools python2-pip && \
+   yum -y install supervisor  python2-pip && \
    pip install pyping
 
 

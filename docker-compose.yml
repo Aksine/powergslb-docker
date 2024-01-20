@@ -3,9 +3,9 @@ version: '3'
 services:
   powergslb:
 # Uncomment the build lines if you want to build from Dockerfile instead
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: aksine/powergslb
     container_name: powergslb
     hostname: powergslb
@@ -28,4 +28,5 @@ services:
       - MYSQL_ROOT_PASSWORD=<YOUR_ROOT_PASSWORD>
     volumes:
       - powergslb_db:/var/lib/mysql
-
+volumes:
+  powergslb_db:
