@@ -40,6 +40,6 @@ jobs:
           registry: docker.io
           # Image name (excluding registry). Defaults to {{$organization/$repository}}.
           image_name: aksine/powergslb
-          tags: $(date +%s)
+          tags: latest
           login: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
