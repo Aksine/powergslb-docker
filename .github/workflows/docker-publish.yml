@@ -42,4 +42,5 @@ jobs:
           # Image name (excluding registry). Defaults to {{$organization/$repository}}.
           image_name: aksine/powergslb
           tags: ${{ steps.meta.outputs.tags }}
-                
+          login: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
