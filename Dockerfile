@@ -6,11 +6,15 @@ ENV TZ=Australia/Melbourne
 # Set the version of PowerGSLB
 ENV VERSION=1.7.4
 
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
+    sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
 # Install necessary packages
-RUN yum -y install nc  epel-release mariadb-server && \
+RUN yum -y install epel-release && \
    yum -y update && \
-   yum -y install supervisor  python2-pip && \
-   pip install pyping
+   yum -y install supervisor nc bind-utils iproute less mariadb-client net-tools python2-pip && \
+   pip install --upgrade pip && \
+   pip install --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org pyping
 
 
 # Download and install PowerGSLB
