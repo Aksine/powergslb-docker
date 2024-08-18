@@ -10,7 +10,6 @@ on:
   push:
     branches: [ "master" ]
     # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "master" ]
 
@@ -41,6 +40,6 @@ jobs:
           registry: docker.io
           # Image name (excluding registry). Defaults to {{$organization/$repository}}.
           image_name: aksine/powergslb
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: $(date +%s)
           login: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
